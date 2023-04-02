@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col p-6">
+            <div class="card-4 p-2">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Materialnummer" aria-label="Materialnummer" [(ngModel)]="searchTerm" (keyup.enter)="enterSearch()" aria-describedby="button-materialnumber">
+                    <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()"><fa-icon [icon]="faTrash"></fa-icon></button>
+                </div>
+                <ul class="list-group manual-list">
+                    <li *ngFor="let manual of displayManuals" (click)="openManual(manual)" class="list-group-item list-group-item-action d-flex">T{{manual.Titel}} <fa-icon [icon]="faPen" class="ms-auto" (click)="editManual(manual)" /></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-8 p-2">
+            <div class="card h-100 p-3">
+                <div class="row">{{ selectedManual.Titel }}</div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-6">MatNr: {{ selectedManual.MatNr }}</div>
+                        <div class="col-6">Typ: {{ selectedManual.ManualType }}</div>
+                        <div class="col-6">Erstellt von: {{ selectedManual.CreateUser }}</div>
+                        <div class="col-6">Aktualisiert von: {{ selectedManual.UpdateUser }}</div>
+                    </div>
+                </div>
+                <div class="row d-flex">
+                    <pdf-viewer [src]="selectedManual.Document" [render-text]="true" [original-size]="false" class="mx-auto" style="width: 400px; height: 500px"></pdf-viewer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

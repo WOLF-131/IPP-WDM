@@ -1,1 +1,1 @@
-# IPP-WDM
+# WDM

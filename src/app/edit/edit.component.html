@@ -1,0 +1,89 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 p-2">
+      <div class="card h-100 p-2">
+        <div class="row">
+          <h2>{{ pageTitle }}</h2>
+        </div>
+        <div class="row p-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="text" class="form-control" placeholder="Dokument Titel" [(ngModel)]="manual.Titel">
+              <label for="floatingInputGrid">Titel</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="number" class="form-control" placeholder="00000000000" [(ngModel)]="manual.MatNr">
+              <label for="floatingInputGrid">Materialnummer</label>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <select class="form-select" [(ngModel)]="manual.ManualType">
+                <option value="1" selected>Umpackung</option>
+                <option value="2">Verpackung</option>
+              </select>
+              <label for="floatingSelectGrid">Anleitung Typ</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="test" disabled class="form-control" [(ngModel)]="manual.CreateUser">
+              <label for="floatingInputGrid">Erstellt von</label>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="test" disabled class="form-control" [(ngModel)]="manual.UpdateUser">
+              <label for="floatingInputGrid">Aktualisiert von</label>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-md">
+            <input type="file" class="form-control form-control-lg" (change)="getManualData($event)" accept="application/pdf">
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <input type="email" class="form-control" id="floatingInputGrid" placeholder="Grund für diese Anleitung" [(ngModel)]="manual.Reason">
+              <label for="floatingInputGrid">Grund</label>
+            </div>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div class="col-md">
+            <div class="form-floating">
+              <button type="button" class="m-1 btn btn-primary">Speichern</button>
+              <button type="button" class="m-1 btn btn-secondary">Abbrechen</button>
+              <button type="button" class="m-1 btn btn-danger" *ngIf="isEdit" (click)="modalOpenConfirm(confirmModal)">Löschen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 p-2">
+      <div class="card h-100 p-2">
+        <pdf-viewer [src]="manual.Document" [render-text]="true" [original-size]="false" class="w-100 h-100"></pdf-viewer>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #confirmModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Bestätigung</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body">
+    Möchten Sie dieses Dokument wirklich löschen?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss()">Zurück</button>
+    <button type="button" class="btn btn-primary" (click)="deleteManual()">Weiter</button>
+  </div>
+</ng-template>
