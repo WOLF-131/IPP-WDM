@@ -71,21 +71,23 @@ export class EditComponent implements OnInit
 
   saveManual()
   {
-    this.loaderService.toggleLoader();
     if (this.isEdit)
     {
-      this.manualService.updateManual(this.manual);
+      this.manualService.updateManual(this.manual).then(() => this.returnHome());
     }
     else
     {
-      this.manualService.createManual(this.manual);
+      this.manualService.createManual(this.manual).then(() => this.returnHome());
     }
-    this.loaderService.toggleLoader();
   }
 
   deleteManual()
   {
-    this.manualService.deleteManual(this.id);
-    location.href = "/"
+    this.manualService.deleteManual(this.id).then(() => this.returnHome());
+  }
+
+  returnHome()
+  {
+    location.href = "/";
   }
 }

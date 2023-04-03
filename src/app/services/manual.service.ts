@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
-import { EMPTY, lastValueFrom, Observable } from 'rxjs';
+import { EMPTY, last, lastValueFrom, Observable } from 'rxjs';
 import { Manual } from '../types/manual.type';
 
 @Injectable({
@@ -9,7 +9,8 @@ import { Manual } from '../types/manual.type';
 export class ManualService
 {
   // Assign API url
-  private REST_API_SERVER = location.origin;
+  // private REST_API_SERVER = location.origin;
+  private REST_API_SERVER = "http://localhost:4000";
   constructor(private httpClient: HttpClient) { }
 
   /**
@@ -75,11 +76,11 @@ export class ManualService
    *
    * @param manual Manual to be created
    */
-  public createManual(manual: Manual)
+  public async createManual(manual: Manual)
   {
     try
     {
-      this.httpClient.post(`${this.REST_API_SERVER}/api/manual/create`, manual);
+      await lastValueFrom(this.httpClient.post(`${this.REST_API_SERVER}/api/manual/create`, manual));
     } catch (error)
     {
       console.log(error);
@@ -93,11 +94,11 @@ export class ManualService
    *
    * @param manual Manual to be updated
    */
-  public updateManual(manual: Manual)
+  public async updateManual(manual: Manual)
   {
     try
     {
-      this.httpClient.post(`${this.REST_API_SERVER}/api/manual/update`, manual);
+      await lastValueFrom(this.httpClient.post(`${this.REST_API_SERVER}/api/manual/update`, manual));
     } catch (error)
     {
       console.log(error);
@@ -110,11 +111,11 @@ export class ManualService
    *
    * @param id Id of the manual to be deleted
    */
-  public deleteManual(id: number)
+  public async deleteManual(id: number)
   {
     try
     {
-      this.httpClient.post(`${this.REST_API_SERVER}/api/manual/delete`, id);
+      await lastValueFrom(this.httpClient.post(`${this.REST_API_SERVER}/api/manual/delete`, { id: id }));
     } catch (error)
     {
       console.log(error);

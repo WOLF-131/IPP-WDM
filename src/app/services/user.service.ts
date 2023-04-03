@@ -9,7 +9,8 @@ export class UserService
 {
 
   // Assign API url
-  private REST_API_SERVER = location.origin;
+  // private REST_API_SERVER = location.origin;
+  private REST_API_SERVER = "http://localhost:4000";
   constructor(private httpClient: HttpClient) { }
 
   /**

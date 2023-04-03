@@ -7,7 +7,7 @@
                     <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()"><fa-icon [icon]="faTrash"></fa-icon></button>
                 </div>
                 <ul class="list-group manual-list">
-                    <li *ngFor="let manual of displayManuals" (click)="openManual(manual)" class="list-group-item list-group-item-action d-flex">T{{manual.Titel}} <fa-icon [icon]="faPen" class="ms-auto" (click)="editManual(manual)" /></li>
+                    <li *ngFor="let manual of displayManuals" (click)="openManual(manual)" class="list-group-item list-group-item-action d-flex">{{manual.Titel}} <fa-icon [icon]="faPen" class="ms-auto" (click)="editManual(manual)" /></li>
                 </ul>
             </div>
         </div>

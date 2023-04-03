@@ -50,7 +50,7 @@
         <div class="row p-2">
           <div class="col-md">
             <div class="form-floating">
-              <input type="email" class="form-control" id="floatingInputGrid" placeholder="Grund für diese Anleitung" [(ngModel)]="manual.Reason">
+              <input type="text" class="form-control" id="floatingInputGrid" placeholder="Grund für diese Anleitung" [(ngModel)]="manual.Reason">
               <label for="floatingInputGrid">Grund</label>
             </div>
           </div>
@@ -58,8 +58,8 @@
         <div class="row p-2">
           <div class="col-md">
             <div class="form-floating">
-              <button type="button" class="m-1 btn btn-primary">Speichern</button>
-              <button type="button" class="m-1 btn btn-secondary">Abbrechen</button>
+              <button type="button" class="m-1 btn btn-primary" (click)="saveManual()">Speichern</button>
+              <button type="button" class="m-1 btn btn-secondary" (click)="returnHome()">Abbrechen</button>
               <button type="button" class="m-1 btn btn-danger" *ngIf="isEdit" (click)="modalOpenConfirm(confirmModal)">Löschen</button>
             </div>
           </div>
